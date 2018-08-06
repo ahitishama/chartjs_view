@@ -1,0 +1,40 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<button id="save">Save</button>
+<canvas id="NoBidsChart" width="800" height="200"> </canvas>
+<script>
+
+// draw background
+var backgroundColor = 'white';
+Chart.plugins.register({
+    beforeDraw: function(c) {
+        var ctx = c.chart.ctx;
+        ctx.fillStyle = backgroundColor;
+        ctx.fillRect(0, 0, c.chart.width, c.chart.height);
+    }
+});
+
+// chart
+var canvas = $('#NoBidsChart').get(0);
+var myChart = new Chart(canvas, {
+    type: 'line',
+    data: {
+        labels: [1, 2, 3, 4, 5],
+        datasets: [{
+            label: 'Line Chart',
+            data: [1, 2, 3, 4, 5],
+            backgroundColor: 'rgba(255, 0, 0, 0.2)',
+            borderColor: 'rgba(255, 0, 0, 0.5)',
+            pointBackgroundColor: 'black'
+        }]
+    }
+});
+
+// save as image
+$('#save').click(function() {
+    canvas.toBlob(function(blob) {
+        saveAs(blob, "pretty image.png");
+    });
+});
+</script>

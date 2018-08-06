@@ -1,0 +1,28 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
+<script src="https://cdn.jsdelivr.net/angular.chartjs/latest/angular-chart.js"></script>
+<script src="https://rawgit.com/beaver71/Chart.PieceLabel.js/master/build/Chart.PieceLabel.min.js"></script>
+<div ng-app="app" ng-controller="ChartCtrl">
+  <canvas id="pie" class="chart chart-pie"
+         chart-data="data" chart-labels="labels" chart-options="options">
+  </canvas> 
+</div>
+
+<script type="text/javascript">
+	angular.module("app", ["chart.js"]).controller("ChartCtrl", function($scope) {
+
+    $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
+
+    $scope.data = [65, 59, 80, 81, 56, 55, 40];
+
+    $scope.options = {
+      pieceLabel: {
+        render: 'data',
+        fontColor: '#000',
+        position: 'outside',
+        segment: true
+      }
+    };
+
+})
+</script>
